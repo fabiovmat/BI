@@ -5,6 +5,9 @@ import pandas as pd
 from datetime import datetime
 import traceback
 import logging
+import webbrowser
+import urllib.parse
+
 
 # Configurar log
 logging.basicConfig(
@@ -109,3 +112,5 @@ except Exception as e:
     erro_completo = traceback.format_exc()
     logging.error("Erro ao gerar o dashboard:\n" + erro_completo)
     print("Ocorreu um erro. Veja o arquivo 'erro_dashboard.log' para detalhes.")
+
+

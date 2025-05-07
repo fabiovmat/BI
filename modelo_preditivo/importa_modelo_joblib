@@ -1,0 +1,22 @@
+import joblib
+import pandas as pd
+
+# Carregar o modelo e as features usadas no treino
+modelo = joblib.load("modelo_matricula_rf.joblib")
+features = joblib.load("features_usadas.joblib")
+
+# Simular novos dados
+novo_cliente = pd.DataFrame([{
+    "Endereço.Região_Centro": 1,
+    "Endereço.Região_Zona Oeste": 0,
+    "Endereço.Região_Zona Sul": 0,
+    "Ano de Matrícula": 2025,
+    # ... certifique-se de que todos os campos das features estejam preenchidos!
+}], columns=features)
+
+# Previsão
+pred = modelo.predict(novo_cliente)[0]
+prob = modelo.predict_proba(novo_cliente)[0][1]
+
+print("Previsão:", "Matriculará" if pred == 1 else "Não se matriculará")
+print("Probabilidade:", round(prob * 100, 2), "%")
